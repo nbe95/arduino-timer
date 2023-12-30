@@ -20,20 +20,20 @@ repetitive task. Used as a one-liner with an if-clause, it checks whether it's
 time to perform a specific task or not, and if so, it automatically restarts the
 timer for the next run. Nice. :tada:
 
-The timer module is non-blocking and because only discrete events are captured,
-there's **no need** for a `tick()` method with needs to be called periodically
-or similar. Plus, timer objects automatically handle timestamp
-subtraction/overflow on their own. I thus find it very handy and often use it
-in my private projects when it comes down to timing several tasks on a
-microcontroller etc.
+The timer module is **non-blocking**. It has a very simple structure and since
+only discrete time events are captured, there's **no need** for a periodically
+called `tick()` method or something similar. Plus, timer objects automatically
+handle **timestamp subtraction/overflow** on their own. I thus find it very
+handy and often use it in my private projects when it comes down to timing
+several tasks on a microcontroller etc.
 
 ## Features
 
 All Timer objects created a compile time or runtime are independent of each
-other; you can create as much of them as you need (or your RAM can hold :wink:).
+other; you can create as much of them as you need (or your RAM can hold).
 
 Thinking of a simple stopwatch, each one provides a fairly intuitive
-interface:
+interface.
 
 - `Timer` (constructor): Creates a Timer object. If a duration is provided as
   argument, it will be immediately applied (but the timer will not be started).
@@ -58,6 +58,13 @@ interface:
   was started as `uint32_t` in ms.
 - `getElapsedTimeRel`: Returns the relative elapsed time difference since the
   timer was started as `float` in range from 0 to 1 (0% to 100%).
+
+When compared, two timer objects are considered equal if their individually
+configured durations are equal.
+
+A Timer object that is casted to a `bool` will evaluate to `true` if a duration
+was set, otherwise `false`. This can be useful e.g. for a check in a single
+if-clause.
 
 ## Quick start
 
