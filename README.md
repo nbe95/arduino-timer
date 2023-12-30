@@ -3,21 +3,24 @@
 This is a very basic OOP timer implementation for easy low-level handling of
 schedules or repetitive tasks.
 
-Simply create a `Timer` object and think of it as a stopwatch. You can set a
-duration, start, stop and check it at any time. Each timer object uses a
-`uint32_t` value as returned by `millis()` to internally store the duration and
-time. Given this limitation, durations of up to almost 50 days (4,294,967,295
-ms) can be handled, which should be sufficient for most task running on embedded
-hardware.
+Simply create a Timer object and think of it as a stopwatch. You can set a
+duration, start, stop and check the elapsed time at any time. Each timer object
+internally uses a `uint32_t` value as returned by `millis()` to store the
+desired duration and start time. Given this technical limitation, any duration
+of up to almost 50 days (4,294,967,295 ms) can be handled, which should be
+sufficient for most task running on embedded hardware.
 
 > Pro tip: The method `checkAndRestart()` comes in very handy when creating a
 repetitive task. Used in an if-clause, it checks whether it's time to perform
 the task or not, and if so, it automatically restarts the timer for the next
 run.
 
-Since this timer module automatically handles timestamp subtraction/overflow, I
-find it very useful and often use it in my private projects when it comes down
-to timing several tasks on microcontrollers etc.
+This timer module is non-blocking and because only discrete events are captured,
+it does **not** rely on any `tick()` method etc., with needs to be called
+periodically. Plus, timer objects automatically handle timestamp
+subtraction/overflow on their own. I thus find it very useful and often use it
+in my private projects when it comes down to timing several tasks on a
+microcontroller etc.
 
 ## Features
 
@@ -38,14 +41,17 @@ to timing several tasks on microcontrollers etc.
 Example:
 
 ```sh
-git clone https://github.com/nbe95/arduino-timer.git ./lib/timer
+git clone https://github.com/nbe95/arduino-timer.git ./src/lib/timer
 
 ```
 
-Afterwards, add `#include "lib/timer/src/timer.h"` to your sketch and you're
-ready to go.
+> :information_source: In the Arduino universe, it is required that the code
+resides under the `src` directory!
 
-## Example
+Then, simply include the `timer.h` in your sketch and you're ready to go.
+Take a quick look at the following code to see the timer in action.
+
+### Example code
 
 ```cpp
 #include "src/lib/timer/src/timer.h"
