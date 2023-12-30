@@ -44,3 +44,50 @@ git clone https://github.com/nbe95/arduino-timer.git ./lib/timer
 
 Afterwards, add `#include "lib/timer/src/timer.h"` to your sketch and you're
 ready to go.
+
+## Example
+
+```cpp
+#include "src/lib/timer/src/timer.h"
+
+// Create a timer with or without a specific duration...
+Timer my_timer;
+Timer another_timer(3000);
+
+void setup() {
+    // ...or provide a duration when starting the timer...
+    my_timer.start(1000);
+    // ...or set/change it later anytime you want
+    my_timer.setDuration(2000);
+
+    // Check if `my_timer` is set and running
+    if (my_timer) { // Short for `my_timer.isSet()`
+        Serial.println("`my_timer` is set, i.e. has got a duration.")
+    }
+    if (my_timer.isRunning()) {
+        Serial.println("... and has been started!")
+    }
+}
+
+void loop() {
+    // Easy check for repetitive tasks
+    if (my_timer.checkAndRestart()) {
+        Serial.println("Yay, 2 seconds have passed!");
+
+        // After this instruction, `another_timer` will be stopped and won't
+        // have a duration any more
+        another_timer.reset();
+    }
+
+    // Check if `another_timer` is set
+    if (!another_timer) {   // Short for !another_timer.isSet()
+        another_timer.start(500);
+        Serial.println("Setting `another_timer` to 1/2s...");
+    }
+
+    // Just check once without resetting
+    if (another_timer.check()) {
+        Serial.println("Congratulations, 500ms have elapsed! This should only be printed once.");
+    }
+}
+```
