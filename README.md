@@ -9,11 +9,12 @@ for a meaningful example.
 The code is designed to provide a **simple and intuitive interface** and
 therefore help you develop quickly and without pain. To use it, simply create a
 Timer object and think of it as a **stopwatch**: You can start, stop, set a
-desired total duration or check the elapsed time at any time. Each timer
-internally uses `uint32_t` values as returned by `millis()` to store the
-duration and starting time. Given this technical limitation, any duration of up
-to almost 50 days (4,294,967,295 ms) can be handled, which should be sufficient
-for most task running on embedded hardware.
+desired total duration or check the elapsed time at any time.
+
+Each timer internally uses `uint32_t` values as returned by `millis()` to store
+the duration and starting time. Given this technical limitation, any duration of
+**up to almost 50 days** (4,294,967,295 ms) can be handled, which should be
+sufficient for most task running on embedded hardware.
 
 > Pro tip: The method `checkAndRestart()` comes in very handy when creating a
 repetitive task. Used as a one-liner with an if-clause, it checks whether it's
@@ -32,12 +33,14 @@ several tasks on a microcontroller etc.
 All Timer objects created a compile time or runtime are independent of each
 other; you can create as much of them as you need (or your RAM can hold).
 
-Thinking of a simple stopwatch, each one provides a fairly intuitive
+Thinking of a simple stopwatch, each timer object provides a fairly intuitive
 interface.
 
 - `Timer` (constructor): Creates a Timer object. If a duration is provided as
-  argument, it will be immediately applied (but the timer will not be started).
-- `set/getDuration`: Sets or gets the desired duration in ms for this timer.
+  argument, it will be immediately applied. (However, the timer will not be
+  started yet.)
+- `set/getDuration`: Sets or gets the desired duration as `uint32_t` in ms for
+  this timer.
 - `start`: The most important function: Starts the timer. Has no effect on a
   timer that's already running. If a duration is provided as argument, it will
   be set accordingly. Returns `true` if the timer was successfully started,
@@ -57,21 +60,22 @@ interface.
 - `getElapsedTime`: Returns the total elapsed time difference since the timer
   was started as `uint32_t` in ms.
 - `getElapsedTimeRel`: Returns the relative elapsed time difference since the
-  timer was started as `float` in range from 0 to 1 (0% to 100%).
+  timer was started as `float` in a range from 0 to 1 (0% to 100%).
 
-When compared, two timer objects are considered equal if their individually
-configured durations are equal.
+When compared, two timer objects are considered equal if both their individual
+durations are equal.
 
 A Timer object that is casted to a `bool` will evaluate to `true` if a duration
-was set, otherwise `false`. This can be useful e.g. for a check in a single
-if-clause.
+was set, otherwise `false`. This can be useful e.g. for a quick check in a
+single if-clause.
 
 ## Quick start
 
-Add both the timer cpp and header file in `src` to your source code, e.g. by
-cloning this repository as a [git
+Add both the timer cpp and header file to your source code, e.g. by cloning this
+repository as a [git
 submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) under
-`src/lib/` of your main sketch. Use the default git workflow to upgrade etc.
+`src/lib/` of your main sketch. Use the default git workflow to pull/upgrade
+etc.
 
 ```sh
 git clone https://github.com/nbe95/arduino-timer.git ./src/lib/timer/
