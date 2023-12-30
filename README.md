@@ -24,21 +24,40 @@ microcontroller etc.
 
 ## Features
 
-- `set/getDuration`
-- `start`
-- `restart`
-- `reset`
-- `check`
-- `checkAndRestart`
-- `isRunning`
-- `isSet`
-- `getStartTime`
-- `getElapsedTime`
-- `getElapsedTimeRel`
+All Timer objects created a compile time or runtime are independent of each
+other. Thinking of a simple stopwatch, each one provides a fairly intuitive
+interface:
 
-## Usage
+- `Timer` (constructor): Creates a Timer object. If a duration is provided as
+  argument, it will be immediately applied (but the timer will not be started).
+- `set/getDuration`: Sets or gets the desired duration in ms for this timer.
+- `start`: The most important function: Starts the timer. Has no effect on a
+  timer that's already running. If a duration is provided as argument, it will
+  be set accordingly. Returns `true` if the timer was successfully started,
+  otherwise `false`.
+- `restart`: Acts exactly like the `start` method, but (re)starts the timer even
+  if it was already running.
+- `reset`: Stops the timer.
+- `check`: Returns `true` if the timer is running and the elapsed time since
+  start exceeds the specified duration, otherwise `false`.
+- `checkAndRestart`: Acts exactly like the `check` method. If the result was
+  `true`, the timer will be immediately restarted. Perfect for cyclic tasks.
+- `isRunning`: Returns `true` if a duration was set and the timer was started,
+  otherwise `false`.
+- `isSet`: Returns `true` if a duration was set.
+- `getStartTime`: Returns the time value as `uint32_t` captured when the timer
+  was started in ms.
+- `getElapsedTime`: Returns the total elapsed time difference since the timer
+  was started as `uint32_t` in ms.
+- `getElapsedTimeRel`: Returns the relative elapsed time difference since the
+  timer was started as `float` in range from 0 to 1 (0% to 100%).
 
-Example:
+## Quick start
+
+Add both the timer cpp and header file in `src` to your source code, e.g. by
+cloning this repository as a [Git
+submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) under
+`src/lib/`. Use the default git workflow to upgrade etc.
 
 ```sh
 git clone https://github.com/nbe95/arduino-timer.git ./src/lib/timer
