@@ -28,8 +28,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup EpoxyDuino
-        run: git clone https://github.com/bxparks/EpoxyDuino ../EpoxyDuino
+      - name: Setup testing framework
+        run: |
+          cd ..
+          git clone https://github.com/bxparks/EpoxyDuino
+          git clone https://github.com/bxparks/AUnit
       - name: Run unit tests
         run: |
           make -C tests
