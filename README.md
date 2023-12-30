@@ -83,19 +83,20 @@ git clone https://github.com/nbe95/arduino-timer.git ./src/lib/timer/
 ```
 
 > :information_source: In the Arduino universe, it is required that the code
-resides under the `src` directory!
+resides under the main `src` directory of your sketch!
 
 Then, simply include the `timer.h` in your sketch and you're ready to go.
+
 Take a quick look at the following code to see how everything works.
 
 ### Example code
 
 ```cpp
-#include "src/lib/timer/src/timer.h"
+#include "./src/lib/timer/src/timer.h"
 
-// Create a timer with or without a specific duration...
-Timer my_timer;
-Timer another_timer(3000);
+// Create a timer with or without a specific duration in ms...
+Timer my_timer(1000ul * 60 * 60 * 24 * 3);  // =3 days
+Timer another_timer;
 
 void setup() {
     // ...or provide a duration when starting the timer...
@@ -104,41 +105,41 @@ void setup() {
     my_timer.setDuration(2000);
 
     // Check if my_timer is set and running
-    if (my_timer) { // Short for my_timer.isSet()
+    if (my_timer) { // short for my_timer.isSet()
         Serial.println("my_timer is set, i.e. has got a duration.")
     }
     if (my_timer.isRunning()) {
-        Serial.println("... and has been started!")
+        Serial.println("... and has already been started!")
     }
 }
 
 void loop() {
     // Easy check for repetitive tasks
     if (my_timer.checkAndRestart()) {
-        Serial.println("Yay, 2 seconds have passed!");
-
-        // After this instruction, another_timer will be stopped and won't
-        // have a duration any more
-        another_timer.reset();
+        task_each_2s();
     }
 
-    // Check if another_timer is set
-    if (!another_timer) {   // Short for !another_timer.isSet()
-        another_timer.start(500);
-        Serial.println("Setting another_timer to 1/2s...");
-
-        // Get elapsed time
-        Serial.print("So far, ");
-        Serial.print(my_timer.getElapsedTime());
-        Serial.print(" ms have elapsed, which is ");
-        Serial.print(my_timer.getElapsedTimeRel() * 100);
-        Serial.println(" percent of the timer.");
-    }
-
-    // Just check once without resetting
+    // Just check once without resetting another_timer
     if (another_timer.check()) {
-        Serial.print("Congratulations, another 500ms have elapsed! ");
+        Serial.print("Congratulations, 7s have elapsed in total! ");
         Serial.println("This message should be printed only once.");
     }
 }
+
+void task_each_2s() {
+    Serial.println("Yay, 2 seconds have passed again.");
+
+    // Check if another_timer is set
+    if (!another_timer) {   // short for another_timer.isSet()
+        another_timer.setDuration(5000);
+        Serial.println("Setting another_timer to 5s.");
+
+        // Fetch elapsed time
+        another_timer.start();
+        delay(10);
+        Serial.print("Right now, about 10ms should have elapsed: ");
+        Serial.println(another_timer.getElapsedTime());
+    }
+}
+
 ```
