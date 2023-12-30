@@ -2,7 +2,6 @@
 # Makefile to compile and run Arduino programs natively on Linux or MacOS.
 
 APP_NAME := test-timer
-ARDUINO_LIBS := AUnit arduino-timer
-ARDUINO_LIB_DIRS := ../../../
+ARDUINO_LIBS := AUnit
 
 include ../../../EpoxyDuino/EpoxyDuino.mk
