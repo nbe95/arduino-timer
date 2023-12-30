@@ -1,8 +1,6 @@
-APP_NAME := test-timer
-ARDUINO_LIBS := AUnit
-ARDUINO_LIB_DIRS := \
-	../mocks \
-	../lib/EpoxyDuino/cores/epoxy
-EXTRA_CPPFLAGS := -D ARDUINO=100
+# See https://github.com/bxparks/EpoxyDuino for documentation about this
+# Makefile to compile and run Arduino programs natively on Linux or MacOS.
 
-include ../lib/EpoxyDuino/EpoxyDuino.mk
+APP_NAME := TimerTest
+ARDUINO_LIBS := AUnit
+include ../../../EpoxyDuino/EpoxyDuino.mk
