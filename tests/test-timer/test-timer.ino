@@ -1,7 +1,7 @@
 // Copyright (c) 2022 Niklas Bettgen
 
 #include <AUnitVerbose.h>
-#include "./src/timer.h"
+#include "timer.h"
 
 
 class ManipulableTimer : public Timer {
@@ -197,5 +197,10 @@ test(CastingAndComparison) {
 }
 
 
-void setup() { aunit::TestRunner::setTimeout(20); }
-void loop() { aunit::TestRunner::run(); }
+void setup() {
+    aunit::TestRunner::setTimeout(20);
+}
+
+void loop() {
+    aunit::TestRunner::run();
+}
