@@ -3,29 +3,33 @@
 This is a very basic OOP timer implementation for easy low-level handling of
 schedules or repetitive tasks.
 
-Simply create a Timer object and think of it as a stopwatch. You can set a
-duration, start, stop and check the elapsed time at any time. Each timer object
-internally uses a `uint32_t` value as returned by `millis()` to store the
-desired duration and start time. Given this technical limitation, any duration
-of up to almost 50 days (4,294,967,295 ms) can be handled, which should be
-sufficient for most task running on embedded hardware.
+The code is designed to provide a simple and intuitive interface for a quick and
+easy development. To use it, simply create a Timer object and think of it as a
+stopwatch. You can start, stop, set a desired total duration or check the
+elapsed time at any time. Each timer internally uses `uint32_t` values as
+returned by `millis()` to store the duration and starting time. Given this
+technical limitation, any duration of up to almost 50 days (4,294,967,295 ms)
+can be handled, which should be sufficient for most task running on embedded
+hardware.
 
 > Pro tip: The method `checkAndRestart()` comes in very handy when creating a
-repetitive task. Used in an if-clause, it checks whether it's time to perform
-the task or not, and if so, it automatically restarts the timer for the next
-run.
+repetitive task. Used as a one-liner with an if-clause, it checks whether it's
+time to perform a specific task or not, and if so, it automatically restarts the
+timer for the next run. Nice. :tada:
 
-This timer module is non-blocking and because only discrete events are captured,
-it does **not** rely on any `tick()` method etc., with needs to be called
-periodically. Plus, timer objects automatically handle timestamp
-subtraction/overflow on their own. I thus find it very useful and often use it
+The timer module is non-blocking and because only discrete events are captured,
+there's **no need** for a `tick()` method with needs to be called periodically
+or similar. Plus, timer objects automatically handle timestamp
+subtraction/overflow on their own. I thus find it very handy and often use it
 in my private projects when it comes down to timing several tasks on a
 microcontroller etc.
 
 ## Features
 
 All Timer objects created a compile time or runtime are independent of each
-other. Thinking of a simple stopwatch, each one provides a fairly intuitive
+other; you can create as much of them as you need (or your RAM can hold :wink:).
+
+Thinking of a simple stopwatch, each one provides a fairly intuitive
 interface:
 
 - `Timer` (constructor): Creates a Timer object. If a duration is provided as
@@ -37,7 +41,7 @@ interface:
   otherwise `false`.
 - `restart`: Acts exactly like the `start` method, but (re)starts the timer even
   if it was already running.
-- `reset`: Stops the timer.
+- `reset`: Stops the timer, keeping the configured duration.
 - `check`: Returns `true` if the timer is running and the elapsed time since
   start exceeds the specified duration, otherwise `false`.
 - `checkAndRestart`: Acts exactly like the `check` method. If the result was
@@ -55,12 +59,12 @@ interface:
 ## Quick start
 
 Add both the timer cpp and header file in `src` to your source code, e.g. by
-cloning this repository as a [Git
+cloning this repository as a [git
 submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) under
-`src/lib/`. Use the default git workflow to upgrade etc.
+`src/lib/` of your main sketch. Use the default git workflow to upgrade etc.
 
 ```sh
-git clone https://github.com/nbe95/arduino-timer.git ./src/lib/timer
+git clone https://github.com/nbe95/arduino-timer.git ./src/lib/timer/
 
 ```
 
@@ -68,7 +72,7 @@ git clone https://github.com/nbe95/arduino-timer.git ./src/lib/timer
 resides under the `src` directory!
 
 Then, simply include the `timer.h` in your sketch and you're ready to go.
-Take a quick look at the following code to see the timer in action.
+Take a quick look at the following code to see how everything works.
 
 ### Example code
 
