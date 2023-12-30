@@ -1,23 +1,20 @@
 tests:
 	set -e; \
-	for i in test-*/Makefile; do \
-		name=$$(dirname $$i); \
-		echo -e '\n===== Making:' $$name '====='; \
-		$(MAKE) -C ./$$name -j; \
+	for i in *Test/Makefile; do \
+		echo '==== Making: ' $$(dirname $$i); \
+		$(MAKE) -C $$(dirname $$i); \
 	done
 
 runtests:
 	set -e; \
-	for i in test-*/Makefile; do \
-		name=$$(dirname $$i); \
-		echo -e '\n===== Running:' $$name '====='; \
-		./$$name/$$name.out; \
+	for i in *Test/Makefile; do \
+		echo '==== Running: ' $$(dirname $$i); \
+		$(MAKE) -C $$(dirname $$i) run; \
 	done
 
 clean:
 	set -e; \
-	for i in test-*/Makefile; do \
-		name=$$(dirname $$i); \
-		echo -e '\n===== Cleaning:' $$name '====='; \
-		$(MAKE) -C ./$$name clean; \
-	done;
+	for i in *Test/Makefile; do \
+		echo '==== Cleaning: ' $$(dirname $$i); \
+		$(MAKE) -C $$(dirname $$i) clean; \
+	done
