@@ -3,4 +3,5 @@
 
 APP_NAME := test-timer
 ARDUINO_LIBS := AUnit
+ARDUINO_LIB_DIRS := ../../src/
 include ../../../EpoxyDuino/EpoxyDuino.mk
