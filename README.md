@@ -1,16 +1,19 @@
 # Arduino Timer Module
 
-This is a very basic OOP timer implementation for easy low-level handling of
-schedules or repetitive tasks.
+This is a basic OOP timer implementation for easy low-level handling of
+schedules or repetitive tasks on embedded hardware. [Scroll down](#example-code)
+for a meaningful example.
 
-The code is designed to provide a simple and intuitive interface for a quick and
-easy development. To use it, simply create a Timer object and think of it as a
-stopwatch. You can start, stop, set a desired total duration or check the
-elapsed time at any time. Each timer internally uses `uint32_t` values as
-returned by `millis()` to store the duration and starting time. Given this
-technical limitation, any duration of up to almost 50 days (4,294,967,295 ms)
-can be handled, which should be sufficient for most task running on embedded
-hardware.
+## Why?
+
+The code is designed to provide a **simple and intuitive interface** and
+therefore help you develop quickly and without pain. To use it, simply create a
+Timer object and think of it as a **stopwatch**: You can start, stop, set a
+desired total duration or check the elapsed time at any time. Each timer
+internally uses `uint32_t` values as returned by `millis()` to store the
+duration and starting time. Given this technical limitation, any duration of up
+to almost 50 days (4,294,967,295 ms) can be handled, which should be sufficient
+for most task running on embedded hardware.
 
 > Pro tip: The method `checkAndRestart()` comes in very handy when creating a
 repetitive task. Used as a one-liner with an if-clause, it checks whether it's
