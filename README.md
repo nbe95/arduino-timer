@@ -106,10 +106,10 @@ void setup() {
 
     // Check if my_timer is set and running
     if (my_timer) { // short for my_timer.isSet()
-        Serial.println("my_timer is set, i.e. has got a duration.")
+        Serial.println("my_timer is set, i.e. has got a duration.");
     }
     if (my_timer.isRunning()) {
-        Serial.println("... and has already been started!")
+        Serial.println("... and has already been started!");
     }
 }
 
@@ -141,5 +141,4 @@ void task_each_2s() {
         Serial.println(another_timer.getElapsedTime());
     }
 }
-
 ```
