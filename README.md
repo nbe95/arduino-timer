@@ -16,12 +16,12 @@ the task or not, and if so, it automatically restarts the timer for the next
 run.
 
 Since this timer module automatically handles timestamp subtraction/overflow, I
-find it very useful and often use it in my privsate projects when it comes down
+find it very useful and often use it in my private projects when it comes down
 to timing several tasks on microcontrollers etc.
 
 ## Features
 
-- `set/GetDuration`
+- `set/getDuration`
 - `start`
 - `restart`
 - `reset`
