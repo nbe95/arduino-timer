@@ -1,4 +1,4 @@
-# Arduino Timer Module
+# Simple Timer for Arduino etc.
 
 This is a basic OOP timer implementation for easy low-level handling of
 schedules or repetitive tasks on embedded hardware. [Scroll down](#example-code)
@@ -6,7 +6,7 @@ for a meaningful example.
 
 ## Why?
 
-The code is designed to provide a **simple and intuitive interface** and
+The code is designed to provide an **easy and intuitive interface** and
 therefore help you develop quickly and without pain. To use it, simply create a
 Timer object and think of it as a **stopwatch**: You can start, stop, set a
 desired total duration or check the elapsed time at any time.
@@ -92,7 +92,7 @@ Take a quick look at the following code to see how everything works.
 ### Example code
 
 ```cpp
-#include "./src/lib/timer/src/timer.h"
+#include "./src/lib/timer/timer.h"
 
 // Create a timer with or without a specific duration in ms...
 Timer my_timer(1000ul * 60 * 60 * 24 * 3);  // =3 days

@@ -21,7 +21,7 @@ jobs:
       - name: Install cpplint
         run: pip install --upgrade cpplint
       - name: Run cpplint
-        run: cpplint --recursive --extensions=ino,c,cpp,h,hpp ./src/
+        run: cpplint --recursive --extensions=ino,c,cpp,h,hpp ./
 
   test:
     name: Test the c++ code
