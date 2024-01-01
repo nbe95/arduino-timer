@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 tests:
 	set -e +f; \
 	for i in test-*/Makefile; do \
