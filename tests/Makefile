@@ -1,24 +1,22 @@
-SHELL := /bin/bash
-
 tests:
-	set -e +f; \
+	set -e; \
 	for i in test-*/Makefile; do \
 		echo '==== Making:' $$(dirname $$i); \
-		cp \*.h \*.cpp $$(dirname $$i); \
+		find -name "timer.*" -exec cp {} $$(dirname $$i) \;; \
 		$(MAKE) -C $$(dirname $$i); \
 	done
 
 runtests:
-	set -e +f; \
+	set -e; \
 	for i in test-*/Makefile; do \
 		echo '==== Running:' $$(dirname $$i); \
 		$(MAKE) -C $$(dirname $$i) run; \
 	done
 
 clean:
-	set -e +f; \
+	set -e; \
 	for i in test-*/Makefile; do \
 		echo '==== Cleaning:' $$(dirname $$i); \
-		rm -rf $$(dirname $$i)/\*.h $$(dirname $$i)/\*.cpp &> /dev/null || true; \
+		find $$(dirname $$i) -name "timer.*" -delete &> /dev/null || true; \
 		$(MAKE) -C $$(dirname $$i) clean; \
 	done
