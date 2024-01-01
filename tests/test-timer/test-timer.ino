@@ -1,7 +1,7 @@
 // Copyright (c) 2022 Niklas Bettgen
 
 #include <AUnitVerbose.h>
-#include "timer.h"
+#include "./timer.h"
 
 
 class ManipulableTimer : public Timer {
