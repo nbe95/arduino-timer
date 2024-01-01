@@ -2,7 +2,7 @@ tests:
 	set -e; \
 	for i in test-*/Makefile; do \
 		echo '==== Making:' $$(dirname $$i); \
-		cp -r ../src/ $$(dirname $$i); \
+		cp timer.* $$(dirname $$i); \
 		$(MAKE) -C $$(dirname $$i); \
 	done
 
@@ -17,6 +17,6 @@ clean:
 	set -e; \
 	for i in test-*/Makefile; do \
 		echo '==== Cleaning:' $$(dirname $$i); \
-		rm -rf $$(dirname $$i)/src/ &> /dev/null || true; \
+		rm -rf $$(dirname $$i)/timer.* &> /dev/null || true; \
 		$(MAKE) -C $$(dirname $$i) clean; \
 	done

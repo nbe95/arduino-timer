@@ -92,7 +92,7 @@ Take a quick look at the following code to see how everything works.
 ### Example code
 
 ```cpp
-#include "./src/lib/timer/src/timer.h"
+#include "./src/lib/timer/timer.h"
 
 // Create a timer with or without a specific duration in ms...
 Timer my_timer(1000ul * 60 * 60 * 24 * 3);  // =3 days
