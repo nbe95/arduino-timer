@@ -71,9 +71,8 @@ single if-clause.
 
 ## Quick start
 
-Add both the timer cpp and header file to your source code, e.g. by cloning this
-repository as a [git
-submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) under
+Add the timer header file to your source code, e.g. by cloning this repository
+as a [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) under
 `src/lib/` of your main sketch. Use the default git workflow to pull/upgrade
 etc.
 
