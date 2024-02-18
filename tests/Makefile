@@ -2,7 +2,7 @@ tests:
 	set -e; \
 	for i in test-*/Makefile; do \
 		echo '==== Making:' $$(dirname $$i); \
-		find ../ -regex '.+\.\(cpp\|h\)' -exec cp {} '$$(dirname $$i)' \; ; \
+		find ../ -regex '.+\.\(cpp\|h\)' -exec cp "{}" "$$(dirname $$i)" \; ; \
 		$(MAKE) -C $$(dirname $$i); \
 	done
 
