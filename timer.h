@@ -102,7 +102,7 @@ class Timer {
     }
 
     // Internal function to retrieve the current µC time
-    ms getCurrentTime() const { return millis(); }
+    virtual ms getCurrentTime() const { return millis(); }
 
     // Comparison operators
     bool operator==(const Timer& other) const { return getDuration() == other.getDuration(); }
